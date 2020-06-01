@@ -1,17 +1,4 @@
 #!/bin/bash
-# Firefox should have:
-#   widget.content.allow-gtk-dark-theme True
-#   no specific theme
-#   Dark Reader mode should have "Use system color scheme"
-#   about:newtab still comes with a default blank background, I use use the following addon
-#   to load Google (which has a dark theme just fine) instead: https://addons.mozilla.org/en-CA/firefox/addon/new-tab-override/
-# Google Chrome should have:
-#   Dark Reader's "Use system color scheme" does not work great, the best is to
-#   restart the browser with: google-chrome --force-dark-mode
-# Gnome Terminal
-#   Should use a single profile, its color schemes will be adjusted on the fly
-# Gnome Shell theme:
-#   dnf install -y gnome-shell-extension-user-theme.noarch gnome-shell-theme-flat-remix.noarch
 function adjust_vim() {
     sed -i "s,\\(set background=\\).*,\\1$1," ~/.vimrc
     sed -i "s,\\(set background=\\).*,\\1$1," .config/nvim/init.vim
