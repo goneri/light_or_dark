@@ -1,4 +1,5 @@
 #!/bin/bash
+# SPDX short identifier: MIT
 function adjust_vim() {
     sed -i "s,\\(set background=\\).*,\\1$1," ~/.vimrc
     sed -i "s,\\(set background=\\).*,\\1$1," .config/nvim/init.vim
