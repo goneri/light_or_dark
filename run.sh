@@ -2,7 +2,7 @@
 # SPDX short identifier: MIT
 function adjust_vim() {
     sed -i "s,\\(set background=\\).*,\\1$1," ~/.vimrc
-    sed -i "s,\\(set background=\\).*,\\1$1," .config/nvim/init.vim
+    sed -i "s,\\(set background=\\).*,\\1$1," ~/.config/nvim/init.vim
 }
 
 function light() {
@@ -23,7 +23,7 @@ function light() {
     adjust_vim light
 
     gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/fedora-workstation/corn.jpg
-    crudini --set .config/gtk-3.0/settings.ini Settings gtk-application-prefer-dark-theme 0
+    crudini --set ~/.config/gtk-3.0/settings.ini Settings gtk-application-prefer-dark-theme 0
 
     cat ~/.config/Code/User/settings.json | jq -r '."workbench.colorTheme" = $v' --arg v 'Default Light+' > ~/.config/Code/User/settings.new.json
     cp --backup ~/.config/Code/User/settings.new.json ~/.config/Code/User/settings.json
@@ -49,7 +49,7 @@ function dark() {
     adjust_vim dark
 
     gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/fedora-workstation/aurora-over-iceland.png
-    crudini --set .config/gtk-3.0/settings.ini Settings gtk-application-prefer-dark-theme 1
+    crudini --set ~/.config/gtk-3.0/settings.ini Settings gtk-application-prefer-dark-theme 1
     cat ~/.config/Code/User/settings.json | jq -r '."workbench.colorTheme" = $v' --arg v 'Default Dark+' > ~/.config/Code/User/settings.new.json
     cp --backup ~/.config/Code/User/settings.new.json ~/.config/Code/User/settings.json
     gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix-Dark-fullPanel"
