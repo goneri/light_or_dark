@@ -6,8 +6,6 @@ function adjust_vim() {
 }
 
 function light() {
-    gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
-
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ foreground-color 'rgb(0,0,0)'
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ highlight-foreground-color '#ffffff'
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ bold-color-same-as-fg true
@@ -27,12 +25,11 @@ function light() {
 
     cat ~/.config/Code/User/settings.json | jq -r '."workbench.colorTheme" = $v' --arg v 'Default Light+' > ~/.config/Code/User/settings.new.json
     cp --backup ~/.config/Code/User/settings.new.json ~/.config/Code/User/settings.json
-    gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix-fullPanel"
+    gsettings set org.gnome.desktop.interface gtk-theme "Flat-Remix-Blue-fullPanel"
+    gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix-Blue-fullPanel"
 }
 
 function dark() {
-    gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
-
     # Tango dark
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ foreground-color ''
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ highlight-foreground-color '#ffffff'
@@ -52,6 +49,7 @@ function dark() {
     crudini --set ~/.config/gtk-3.0/settings.ini Settings gtk-application-prefer-dark-theme 1
     cat ~/.config/Code/User/settings.json | jq -r '."workbench.colorTheme" = $v' --arg v 'Default Dark+' > ~/.config/Code/User/settings.new.json
     cp --backup ~/.config/Code/User/settings.new.json ~/.config/Code/User/settings.json
+    gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
     gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix-Dark-fullPanel"
 }
 
@@ -64,5 +62,7 @@ done
 echo "To restore the wallpaper:"
 echo "    gsettings set org.gnome.desktop.background picture-uri $(gsettings get org.gnome.desktop.background picture-uri)"
 
-
+gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
+gsettings reset org.gnome.shell.extensions.user-theme name
+gsettings reset org.gnome.desktop.interface gtk-theme
 $1
