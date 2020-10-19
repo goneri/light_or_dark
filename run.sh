@@ -5,6 +5,14 @@ function adjust_vim() {
     sed -i "s,\\(set background=\\).*,\\1$1," ~/.config/nvim/init.vim
 }
 
+function adjust_konsole() {
+    for a in $(qdbus |grep konsole); do
+        for s in $(qdbus ${a}|grep /Sessions/); do
+            qdbus ${a} ${s} org.kde.konsole.Session.setProfile $1
+        done
+    done
+}
+
 function light() {
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ foreground-color 'rgb(0,0,0)'
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ highlight-foreground-color '#ffffff'
@@ -27,6 +35,10 @@ function light() {
     cp --backup ~/.config/Code/User/settings.new.json ~/.config/Code/User/settings.json
     gsettings set org.gnome.desktop.interface gtk-theme "Flat-Remix-Blue-fullPanel"
     gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix-Blue-fullPanel"
+
+    # KDE
+    adjust_konsole Light
+    lookandfeeltool --apply org.kde.breeze.desktop
 }
 
 function dark() {
@@ -51,6 +63,10 @@ function dark() {
     cp --backup ~/.config/Code/User/settings.new.json ~/.config/Code/User/settings.json
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
     gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix-Dark-fullPanel"
+
+    # KDE
+    adjust_konsole Dark
+    lookandfeeltool --apply org.kde.breezedark.desktop
 }
 
 eval "gnome_terminal=$(gsettings get org.gnome.Terminal.ProfilesList default)"
