@@ -8,9 +8,9 @@ This script switch the following components between the two modes:
 - VSCode
 - Firefox
 - Gnome Chrome
+- Emacs (Doom)
 
-
-Tested on Fedora 32.
+Tested on Fedora 33.
 
 ## Configuration
 

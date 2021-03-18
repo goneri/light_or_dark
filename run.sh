@@ -39,6 +39,10 @@ function light() {
     # KDE
     adjust_konsole Light
     lookandfeeltool --apply org.kde.breeze.desktop
+
+    # Doom emacs
+    sed -i.bak "s,^\(setq doom-theme '(.*\),(setq doom-theme 'tsdh-light)," ~/.doom.d/config.el
+    emacsclient -s /run/user/1000/emacs/server -e "(load-theme 'tsdh-light t)"
 }
 
 function dark() {
@@ -67,6 +71,10 @@ function dark() {
     # KDE
     adjust_konsole Dark
     lookandfeeltool --apply org.kde.breezedark.desktop
+
+    # Doom emacs
+    sed -i.bak "s,^\(setq doom-theme '(.*\),(setq doom-theme 'tsdh-dark)," ~/.doom.d/config.el
+    emacsclient -s /run/user/1000/emacs/server -e "(load-theme 'tsdh-dark t)"
 }
 
 eval "gnome_terminal=$(gsettings get org.gnome.Terminal.ProfilesList default)"
