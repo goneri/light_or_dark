@@ -25,6 +25,7 @@ function light() {
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ use-theme-colors false
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ background-color 'rgb(255,255,221)'
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ highlight-background-color '#000000'
+    gsettings set org.gnome.desktop.interface color-scheme prefer-light
 
     adjust_vim light
 
@@ -58,6 +59,7 @@ function dark() {
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ use-theme-colors false
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ background-color 'rgb(46,52,54)'
     gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$gnome_terminal/ highlight-background-color '#000000'
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
     adjust_vim dark
 
