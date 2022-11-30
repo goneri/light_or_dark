@@ -29,7 +29,7 @@ function light() {
 
     adjust_vim light
 
-    gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/fedora-workstation/corn.jpg
+    gsettings set org.gnome.desktop.interface color-scheme prefer-light
     crudini --set ~/.config/gtk-3.0/settings.ini Settings gtk-application-prefer-dark-theme 0
 
     cat ~/.config/Code/User/settings.json | jq -r '."workbench.colorTheme" = $v' --arg v 'Default Light+' > ~/.config/Code/User/settings.new.json
@@ -63,7 +63,7 @@ function dark() {
 
     adjust_vim dark
 
-    gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/fedora-workstation/aurora-over-iceland.png
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark
     crudini --set ~/.config/gtk-3.0/settings.ini Settings gtk-application-prefer-dark-theme 1
     cat ~/.config/Code/User/settings.json | jq -r '."workbench.colorTheme" = $v' --arg v 'Default Dark+' > ~/.config/Code/User/settings.new.json
     cp --backup ~/.config/Code/User/settings.new.json ~/.config/Code/User/settings.json
