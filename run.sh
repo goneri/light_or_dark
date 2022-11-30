@@ -42,7 +42,7 @@ function light() {
     lookandfeeltool --apply org.kde.breeze.desktop
 
     # Doom emacs
-    sed -i.bak "s,^\(setq doom-theme '(.*\),(setq doom-theme 'tsdh-light)," ~/.doom.d/config.el
+    sed -i.bak "s,^(setq doom-theme '.*,(setq doom-theme 'tsdh-light)," ~/.doom.d/config.el
     emacsclient -s /run/user/1000/emacs/server -e "(load-theme 'tsdh-light t)"
 }
 
@@ -75,7 +75,7 @@ function dark() {
     lookandfeeltool --apply org.kde.breezedark.desktop
 
     # Doom emacs
-    sed -i.bak "s,^\(setq doom-theme '(.*\),(setq doom-theme 'tsdh-dark)," ~/.doom.d/config.el
+    sed -i.bak "s,^(setq doom-theme '.*,(setq doom-theme 'tsdh-dark)," ~/.doom.d/config.el
     emacsclient -s /run/user/1000/emacs/server -e "(load-theme 'tsdh-dark t)"
 }
 
